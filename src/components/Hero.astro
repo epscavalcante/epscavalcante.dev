@@ -1,9 +1,14 @@
+---
+import me from '../assets/me.jpeg';
+---
+
 <section
   class="px-2 sm:px-0 gap-5 sm:flex items-center text-center sm:text-left"
 >
   <img
-    src="https://epscavalcante.dev/me.jpeg"
-    alt=""
+    src={me.src} 
+    alt="Minha foto com um sorrisão" 
+    fetchpriority="high"
     class="w-64 sm:w-52 mb-4 sm:mb-0 mx-auto lg:mx-0 border-4 rounded-2xl"
   />
 
