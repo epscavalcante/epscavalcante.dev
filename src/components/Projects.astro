@@ -1,0 +1,11 @@
+---
+import ProjectList from './ProjectList.astro';
+---
+
+<section id="projetos" aria-labelledby="projects-title" class="space-y-4 scroll-mt-6">
+  <div class="flex items-center justify-between gap-4">
+    <h2 id="projects-title" class="text-2xl font-bold">Projetos</h2>
+    <a href="/projetos" class="text-sm font-medium text-action hover:text-action-hover underline underline-offset-4">Ver todos</a>
+  </div>
+  <ProjectList limit={3} />
+</section>

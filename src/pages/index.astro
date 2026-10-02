@@ -1,16 +1,26 @@
 ---
-import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import Projects from "../components/Projects.astro";
+import PostList from "../components/PostList.astro";
 import Tools from "../components/Tools.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div class="max-w-xl mx-auto space-y-10">
-	<Header />
+  <Hero />
 
-	<Hero />
+  <Projects />
 
-	<Tools />
-  </div>
+  <section aria-labelledby="posts-title" class="space-y-4">
+    <div class="flex items-center justify-between gap-4">
+      <h2 id="posts-title" class="text-2xl font-bold">Posts</h2>
+      <a href="/posts" class="text-sm font-medium text-action hover:text-action-hover underline underline-offset-4">Ver todos</a>
+    </div>
+    <PostList limit={3} />
+  </section>
+
+  <section aria-labelledby="tools-title" class="space-y-4">
+    <h2 id="tools-title" class="text-2xl font-bold">Ferramentas</h2>
+    <Tools />
+  </section>
 </Layout>

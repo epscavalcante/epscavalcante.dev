@@ -1,7 +1,51 @@
-<div class="font-black flex items-end py-5 justify-center">
+---
+const isPostsPage = Astro.url.pathname.startsWith('/posts');
+const isProjectsPage = Astro.url.pathname.startsWith('/projetos');
+---
+
+<header class="flex flex-col items-center gap-4 py-5 sm:flex-row sm:justify-between">
+  <a href="/" aria-label="epscavalcante.dev — início" class="font-black flex items-end">
     epscavalcante
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot text-accent-blue" viewBox="0 0 16 16">
         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
     </svg>
     dev
-</div>
+  </a>
+  <div class="flex items-center gap-3">
+  <nav aria-label="Navegação principal" class="flex gap-5 text-sm font-medium text-muted [&_a]:transition-colors [&_a:hover]:text-action [&_a[aria-current=page]]:text-accent-blue">
+    <a href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined} class="hover:underline underline-offset-4">Início</a>
+    <a href="/projetos" aria-current={isProjectsPage ? 'page' : undefined} class="hover:underline underline-offset-4">Projetos</a>
+    <a href="/posts" aria-current={isPostsPage ? 'page' : undefined} class="hover:underline underline-offset-4">Posts</a>
+  </nav>
+  <button id="theme-toggle" type="button" aria-label="Ativar tema claro" title="Ativar tema claro" class="grid size-9 shrink-0 cursor-pointer place-items-center rounded-lg border border-stroke bg-panel text-foreground transition-colors hover:bg-control focus-visible:outline-2 focus-visible:outline-focus focus-visible:outline-offset-4">
+    <svg class="theme-icon-light size-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+    </svg>
+    <svg class="theme-icon-dark size-4" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />
+    </svg>
+  </button>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('#theme-toggle');
+  function updateThemeLabel() {
+    const label = document.documentElement.dataset.theme === 'light'
+      ? 'Ativar tema escuro'
+      : 'Ativar tema claro';
+    button?.setAttribute('aria-label', label);
+    button?.setAttribute('title', label);
+  }
+  updateThemeLabel();
+  button?.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f7f8fa' : '#151718');
+    try {
+      localStorage.setItem('epscavalcante.theme', theme);
+    } catch {}
+    updateThemeLabel();
+  });
+</script>

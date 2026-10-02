@@ -1,20 +1,44 @@
 ---
 import '../assets/app.css';
+import Header from '../components/Header.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Epscavalcante.dev - Eduardo Cavalcante - Engenheiro de software',
+	description = 'Projetos e anotações de Eduardo Cavalcante, engenheiro de software.',
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR" data-theme="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="color-scheme" content="dark light" />
+		<meta name="theme-color" content="#151718" />
+		<script is:inline>
+			let theme = 'dark';
+			try {
+				if (localStorage.getItem('epscavalcante.theme') === 'light') theme = 'light';
+			} catch {}
+			document.documentElement.dataset.theme = theme;
+			document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f7f8fa' : '#151718');
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Epscavalcante.dev - Eduardo Cavalcante - Engenheiro de software</title>
+		<meta name="description" content={description} />
+		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<div class="w-full max-w-xl mx-auto px-4 sm:px-0 pb-12 space-y-10">
+			<Header />
+			<main class="space-y-10">
+				<slot />
+			</main>
+		</div>
 	</body>
 </html>
-
-<style>
-</style>
