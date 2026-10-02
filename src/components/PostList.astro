@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const visiblePosts = limit === undefined ? posts : posts.slice(0, limit);
+const dateFormat = new Intl.DateTimeFormat('pt-BR', {
+  dateStyle: 'long',
+  timeZone: 'UTC',
+});
+---
+
+<ul class="space-y-4">
+  {visiblePosts.map((post) => (
+    <li>
+      <a href={`/posts/${post.id}`} class="block rounded-2xl border border-stroke bg-panel p-5 space-y-2 hover:border-action transition-colors">
+        <time datetime={post.data.date.toISOString()} class="text-sm text-subtle">
+          {dateFormat.format(post.data.date)}
+        </time>
+        <h3 class="text-xl font-semibold">{post.data.title}</h3>
+        <p class="text-muted">{post.data.description}</p>
+      </a>
+    </li>
+  ))}
+</ul>

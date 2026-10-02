@@ -9,26 +9,26 @@ import me from '../assets/me.jpeg';
     src={me.src} 
     alt="Minha foto com um sorrisão" 
     fetchpriority="high"
-    class="w-64 sm:w-52 mb-4 sm:mb-0 mx-auto lg:mx-0 border-4 rounded-2xl"
+    class="w-64 sm:w-52 sm:shrink-0 mb-4 sm:mb-0 mx-auto lg:mx-0 border-4 border-black rounded-2xl"
   />
 
-  <div class="flex flex-col gap-3">
+  <div class="flex min-w-0 flex-1 flex-col gap-3">
     <div>
-      <h2 class="font-black text-3xl sm:text-3xl lg:text-4xl">
+      <h2 class="font-black text-[clamp(1.25rem,7vw,1.875rem)] whitespace-nowrap sm:text-3xl lg:text-4xl">
         Eduardo Cavalcante
       </h2>
-      <h3 class="font-medium text-xl sm:text-2xl">Software engineer</h3>
+      <h3 class="font-medium text-xl sm:text-2xl text-subtle">Software engineer</h3>
     </div>
     <div class="space-y-2">
       <div class="flex items-center gap-3">
         <div
-          class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full"
+          class="w-8 h-8 flex items-center justify-center bg-control rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-4 h-4 text-gray-600"
+            class="w-4 h-4 text-accent-blue"
           >
             <path
               d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
@@ -40,7 +40,7 @@ import me from '../assets/me.jpeg';
         </div>
         <a
           href="mailto:eduardo.ps.cavalcante@gmail.com"
-          class="text-apple-gray-500 hover:text-gray-600 transition-colors"
+          class="min-w-0 [overflow-wrap:anywhere] text-muted hover:text-action transition-colors"
         >
           eduardo.ps.cavalcante@gmail.com
         </a>
@@ -48,13 +48,13 @@ import me from '../assets/me.jpeg';
 
       <div class="flex items-center gap-3">
         <div
-          class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full"
+          class="w-8 h-8 flex items-center justify-center bg-control rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-4 h-4 text-gray-600"
+            class="w-4 h-4 text-accent-blue"
           >
             <path
               fill-rule="evenodd"
@@ -63,8 +63,8 @@ import me from '../assets/me.jpeg';
           </svg>
         </div>
         <a
-          href="tel:+1234567890"
-          class="text-apple-gray-500 hover:text-gray-600 transition-colors"
+          href="tel:+5565993552122"
+          class="text-muted hover:text-action transition-colors"
         >
           65 9 93552122
         </a>
@@ -72,13 +72,13 @@ import me from '../assets/me.jpeg';
 
       <div class="flex items-center gap-3">
         <div
-          class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full"
+          class="w-8 h-8 flex items-center justify-center bg-control rounded-full"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="w-4 h-4 text-gray-600"
+            class="w-4 h-4 text-accent-blue"
           >
             <path
               fill-rule="evenodd"
@@ -86,14 +86,14 @@ import me from '../assets/me.jpeg';
               clip-rule="evenodd"></path>
           </svg>
         </div>
-        <span class="text-apple-gray-500"> Cuiabá, Mato Grosso</span>
+        <span class="text-muted"> Cuiabá, Mato Grosso</span>
       </div>
     </div>
     <div class="flex gap-2">
       <a
         href="https://github.com/epscavalcante"
-        target="blank"
-        class="w-full bg-[#24292e] hover:bg-[#24292e]/85 text-white font-medium px-4 py-3 flex text-2x rounded-lg items-center gap-3 justify-center"
+        target="_blank"
+        class="w-full bg-action hover:bg-action-hover text-on-action transition-colors font-medium px-4 py-3 flex text-2x rounded-lg items-center gap-3 justify-center"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -113,8 +113,8 @@ import me from '../assets/me.jpeg';
 
       <a
         href="https://www.linkedin.com/in/epscavalcante/"
-        target="blank"
-        class="w-full bg-[#0a66c2] hover:bg-[#0a66c2]/85 text-white font-medium px-4 py-3 flex text-2x rounded-lg items-center gap-3 justify-center"
+        target="_blank"
+        class="w-full border border-stroke bg-panel hover:bg-control text-foreground transition-colors font-medium px-4 py-3 flex text-2x rounded-lg items-center gap-3 justify-center"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

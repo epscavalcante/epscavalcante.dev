@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.title.localeCompare(b.data.title, 'pt-BR'),
+);
+const visibleProjects = limit === undefined ? projects : projects.slice(0, limit);
+---
+
+{visibleProjects.length > 0 ? (
+  <ul class="space-y-4">
+    {visibleProjects.map((project) => (
+      <li><ProjectCard project={project} /></li>
+    ))}
+  </ul>
+) : (
+  <p class="text-muted">Novos projetos serão publicados por aqui.</p>
+)}
